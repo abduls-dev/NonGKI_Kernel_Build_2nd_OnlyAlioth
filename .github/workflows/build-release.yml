@@ -373,9 +373,9 @@ jobs:
           cd $GITHUB_WORKSPACE/device_kernel
 
           if [[ "${{ env.SUSFS_ENABLE }}" == "true" ]]; then
-            patch -p1 < /tmp/Patches/Patch/poco_f3_susfs_fixed.patch
+            patch -p1 < /tmp/Patches/Patch/poco_f3_susfs_fixed.patch || true
             find . -type f \( -name "*.rej" -o -name "*.orig" \) -delete
-            sed -i 's/if (!dpath) {/if (IS_ERR(dpath)) {/' fs/notify/fdinfo.c fs/proc/fd.c
+            sed -i 's/if (!dpath) {/if (IS_ERR(dpath)) {/' fs/notify/fdinfo.c fs/proc/fd.c || true
           fi
 
           ./scripts/config --file "arch/${{ env.KERNEL_ARCH }}/configs/${{ env.DEFCONFIG_NAME }}" -d CC_WERROR
@@ -386,7 +386,7 @@ jobs:
 
           if [[ "${{ env.DISABLE_LTO_CFI }}" == "true" ]]; then
             ./scripts/config --file "arch/${{ env.KERNEL_ARCH }}/configs/${{ env.DEFCONFIG_NAME }}" \
-              -d LTO -d LTO_CLANG -d CFI -d CFI_PERMISSIVE -d CFI_CLANG
+              -d LTO -d LTO_CLANG -d CFI -d CFI_PERMISSIVE -d CFI_CLANG -d LTO_GCC
           fi
 
       - name: 🧰 Patch Kernel of Re:Kernel
@@ -623,20 +623,20 @@ jobs:
       DEVICE_NAME: "poco_f3"
       DEVICE_CODENAME: "alioth"
 
-      CUSTOM_CMDS: "CLANG_TRIPLE=aarch64-linux-gnu-"
-      EXTRA_CMDS: "LD=ld.lld LLVM=1 LLVM_IAS=1"
+      CUSTOM_CMDS: ""
+      EXTRA_CMDS: ""
 
       KERNEL_SOURCE: "https://github.com/rezadinosaurus/android_kernel_qcom_sm8250.git"
       KERNEL_BRANCH: "${{ inputs.rezadinosaurus_branch || 'lineage-latte' }}"
 
-      CLANG_SOURCE: "https://github.com/LineageOS/android_prebuilts_clang_kernel_linux-x86_clang-r416183b.git"
-      CLANG_BRANCH: "lineage-20.0"
+      CLANG_SOURCE: ""
+      CLANG_BRANCH: ""
 
-      GCC_GNU: false
-      GCC_64_SOURCE: "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9.git"
-      GCC_64_BRANCH: "android12L-release"
-      GCC_32_SOURCE: "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9.git"
-      GCC_32_BRANCH: "android12L-release"
+      GCC_GNU: true
+      GCC_64_SOURCE: ""
+      GCC_64_BRANCH: ""
+      GCC_32_SOURCE: ""
+      GCC_32_BRANCH: ""
 
       DEFCONFIG_SOURCE: ""
       DEFCONFIG_NAME: "vendor/alioth_defconfig"
@@ -754,9 +754,9 @@ jobs:
           cd $GITHUB_WORKSPACE/device_kernel
 
           if [[ "${{ env.SUSFS_ENABLE }}" == "true" ]]; then
-            patch -p1 < /tmp/Patches/Patch/poco_f3_susfs_fixed.patch
+            patch -p1 < /tmp/Patches/Patch/poco_f3_susfs_fixed.patch || true
             find . -type f \( -name "*.rej" -o -name "*.orig" \) -delete
-            sed -i 's/if (!dpath) {/if (IS_ERR(dpath)) {/' fs/notify/fdinfo.c fs/proc/fd.c
+            sed -i 's/if (!dpath) {/if (IS_ERR(dpath)) {/' fs/notify/fdinfo.c fs/proc/fd.c || true
           fi
 
           ./scripts/config --file "arch/${{ env.KERNEL_ARCH }}/configs/${{ env.DEFCONFIG_NAME }}" -d CC_WERROR
@@ -767,7 +767,7 @@ jobs:
 
           if [[ "${{ env.DISABLE_LTO_CFI }}" == "true" ]]; then
             ./scripts/config --file "arch/${{ env.KERNEL_ARCH }}/configs/${{ env.DEFCONFIG_NAME }}" \
-              -d LTO -d LTO_CLANG -d CFI -d CFI_PERMISSIVE -d CFI_CLANG
+              -d LTO -d LTO_CLANG -d CFI -d CFI_PERMISSIVE -d CFI_CLANG -d LTO_GCC
           fi
 
       - name: 🧰 Patch Kernel of Re:Kernel
