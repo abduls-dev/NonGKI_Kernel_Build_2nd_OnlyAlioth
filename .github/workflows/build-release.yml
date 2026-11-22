@@ -134,7 +134,7 @@ on:
           - "zstd"
 
       rezadinosaurus_branch:
-        description: "Rezadinosaurus Kernel Branch (sm8250: latte = AOSP/CLO, mocca = MIUI/HOS)"
+        description: "Butterfly / Rezadinosaurus Kernel Branch (sm8250: latte = AOSP/CLO, mocca = MIUI/HOS)"
         required: true
         type: choice
         default: "lineage-latte"
@@ -161,7 +161,7 @@ on:
         default: true
 
       susfs_enable:
-        description: "Enable SUSFS (incompatible with: next, xxksu, rsuntk, sukisu — works ONLY with bakasu)"
+        description: "Enable SUSFS (works ONLY with bakasu; NOT supported in Butterfly — use NoMount instead)"
         required: true
         type: boolean
         default: true
@@ -197,7 +197,7 @@ on:
         default: false
 
       kpm_enable:
-        description: "Enable KPM (Kernel Patch Module support)"
+        description: "Enable KPM (Kernel Patch Module; supported in LineageOS & Butterfly, NOT supported in E404)"
         required: true
         type: boolean
         default: false
@@ -612,7 +612,7 @@ jobs:
         uses: ./.github/workflows/upload-files
 
   build-poco-f3-rezadinosaurus:
-    name: Xiaomi Poco F3 (Rezadinosaurus)
+    name: Xiaomi Poco F3 (Butterfly / Rezadinosaurus)
     if: inputs.kernel_target == 'rezadinosaurus' || inputs.kernel_target == 'all' || github.event_name == 'schedule'
     runs-on: ubuntu-24.04
     env:
@@ -707,7 +707,7 @@ jobs:
     steps:
       - name: 🔎 Validate Selected Options
         run: |
-          echo "Target:        Rezadinosaurus sm8250"
+          echo "Target:        Butterfly (Rezadinosaurus) sm8250"
           echo "Branch:        ${{ env.KERNEL_BRANCH }}"
           echo "KernelSU Fork: ${{ env.KERNELSU_AUTO_FORK }}"
           echo "Multi-Manager: ${{ env.MULTI_MANAGER }}"
@@ -901,7 +901,7 @@ jobs:
                 echo "| Xiaomi Poco F3 (E404) | alioth | 4.19 | ${E404_BRANCH} | AnyKernel3 | ${KSU_FORK} | $(mark "${SUSFS_ENABLE}") | $(mark "${NOMOUNT_ENABLE}") | $(mark "${REKERNEL_ENABLE}") | $(mark "${BBG_ENABLE}") | $(mark "${DROIDSPACES_ENABLE}") | $(mark "${KPM_ENABLE}") | $(mark "${FGETPRIORITY_ENABLE}") | $(mark "${VPNHIDE_ENABLE}") | $(mark "${RTL8812AU_ENABLE}") |"
               fi
               if [[ "${KERNEL_TARGET}" == "rezadinosaurus" || "${KERNEL_TARGET}" == "all" ]]; then
-                echo "| Xiaomi Poco F3 (Rezadinosaurus) | alioth | 4.19 | ${REZDINO_BRANCH} | AnyKernel3 | ${KSU_FORK} | $(mark "${SUSFS_ENABLE}") | $(mark "${NOMOUNT_ENABLE}") | $(mark "${REKERNEL_ENABLE}") | $(mark "${BBG_ENABLE}") | $(mark "${DROIDSPACES_ENABLE}") | $(mark "${KPM_ENABLE}") | $(mark "${FGETPRIORITY_ENABLE}") | $(mark "${VPNHIDE_ENABLE}") | $(mark "${RTL8812AU_ENABLE}") |"
+                echo "| Xiaomi Poco F3 (Butterfly) | alioth | 4.19 | ${REZDINO_BRANCH} | AnyKernel3 | ${KSU_FORK} | $(mark "${SUSFS_ENABLE}") | $(mark "${NOMOUNT_ENABLE}") | $(mark "${REKERNEL_ENABLE}") | $(mark "${BBG_ENABLE}") | $(mark "${DROIDSPACES_ENABLE}") | $(mark "${KPM_ENABLE}") | $(mark "${FGETPRIORITY_ENABLE}") | $(mark "${VPNHIDE_ENABLE}") | $(mark "${RTL8812AU_ENABLE}") |"
               fi
               echo ""
               echo "$KSU_INFO"
@@ -925,7 +925,7 @@ jobs:
                 echo "| Xiaomi Poco F3 (E404) | alioth | 4.19 | ${E404_BRANCH} | AnyKernel3 | ${KSU_FORK} | $(mark "${SUSFS_ENABLE}") | $(mark "${NOMOUNT_ENABLE}") | $(mark "${REKERNEL_ENABLE}") | $(mark "${BBG_ENABLE}") | $(mark "${DROIDSPACES_ENABLE}") | $(mark "${KPM_ENABLE}") | $(mark "${FGETPRIORITY_ENABLE}") | $(mark "${VPNHIDE_ENABLE}") | $(mark "${RTL8812AU_ENABLE}") |"
               fi
               if [[ "${KERNEL_TARGET}" == "rezadinosaurus" || "${KERNEL_TARGET}" == "all" ]]; then
-                echo "| Xiaomi Poco F3 (Rezadinosaurus) | alioth | 4.19 | ${REZDINO_BRANCH} | AnyKernel3 | ${KSU_FORK} | $(mark "${SUSFS_ENABLE}") | $(mark "${NOMOUNT_ENABLE}") | $(mark "${REKERNEL_ENABLE}") | $(mark "${BBG_ENABLE}") | $(mark "${DROIDSPACES_ENABLE}") | $(mark "${KPM_ENABLE}") | $(mark "${FGETPRIORITY_ENABLE}") | $(mark "${VPNHIDE_ENABLE}") | $(mark "${RTL8812AU_ENABLE}") |"
+                echo "| Xiaomi Poco F3 (Butterfly) | alioth | 4.19 | ${REZDINO_BRANCH} | AnyKernel3 | ${KSU_FORK} | $(mark "${SUSFS_ENABLE}") | $(mark "${NOMOUNT_ENABLE}") | $(mark "${REKERNEL_ENABLE}") | $(mark "${BBG_ENABLE}") | $(mark "${DROIDSPACES_ENABLE}") | $(mark "${KPM_ENABLE}") | $(mark "${FGETPRIORITY_ENABLE}") | $(mark "${VPNHIDE_ENABLE}") | $(mark "${RTL8812AU_ENABLE}") |"
               fi
               echo ""
               echo "$KSU_INFO"

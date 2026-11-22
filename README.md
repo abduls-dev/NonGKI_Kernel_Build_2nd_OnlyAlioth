@@ -57,6 +57,25 @@ It also aims to provide an easier compilation process using **GitHub Actions**, 
 
 ---
 
+### 📊 Poco F3 Kernel Patch Compatibility Matrix
+
+| Patch / Feature | LineageOS (`sm8250`) | E404 (`sm8250`) | Butterfly / Rezadinosaurus (`sm8250`) | Notes |
+|---|:---:|:---:|:---:|---|
+| **KernelSU** (`kernelsu_fork`) | ✅ All forks | ✅ All forks | ✅ All forks | BakaSU, Next, SukiSU-Nova, xxKSU, rsuntk |
+| **SUSFS (v2.4.0)** (`susfs_enable`) | ✅ Supported | ✅ Supported | ❌ **Not Supported** | Patch conflicts with Butterfly tree; use **NoMount** |
+| **NoMount** (`nomount_enable`) | ✅ Supported | ✅ Supported | ✅ **Built-in** | `CONFIG_NOMOUNT` is natively built into Butterfly Kernel |
+| **KPM (Kernel Patch Module)** (`kpm_enable`) | ✅ Supported | ❌ **Not Supported** | ✅ **Supported** | E404 does not support KPM; Butterfly includes `set_memory.h` |
+| **Re:Kernel** (`rekernel_enable`) | ✅ Supported | ✅ Supported | ✅ Supported | Requires cgroup v2 freezer (supported on all 3 kernels) |
+| **fgetpriority** (`fgetpriority_enable`) | ✅ Supported | ✅ Supported | ✅ Supported | Hides `getpriority` syscall from detection |
+| **VPNHide Next** (`vpnhide_enable`) | ✅ Supported | ✅ Supported | ✅ Supported | Hides VPN interface from apps |
+| **Baseband Guard (BBG)** (`bbg_enable`, `bbg_boot`) | ✅ Supported | ✅ Supported | ✅ Supported | Modem protection + optional boot partition write-lock |
+| **Droidspaces (LXC/Docker)** (`droidspaces_enable`) | ✅ Supported | ✅ Supported | ✅ Supported | Namespace and cgroup containers |
+| **RTL8812AU USB Wi-Fi** (`rtl8812au_enable`) | ✅ Supported | ✅ Supported | ✅ Supported | Built into kernel (built-in 88XXau / Monitor Mode) |
+| **Disable LTO/CFI** (`disable_lto_cfi`) | ✅ Supported | ✅ Supported | ✅ Supported | Disables LTO_CLANG / LTO_GCC / CFI |
+| **Compiler / Toolchain** | **AOSP Clang** (20.0) | **LLVM/Clang** (22.1.3) | **GNU GCC** (aarch64-linux-gnu) | Butterfly is strictly compiled with GNU GCC |
+
+---
+
 ### Acknowledgements
 
 - Thanks to the contributors of the [Version 1.x series](https://github.com/JackA1ltman/NonGKI_Kernel_Build) (in no particular order):

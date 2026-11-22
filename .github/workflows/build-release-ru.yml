@@ -74,7 +74,7 @@ on:
           - "zstd"
 
       rezadinosaurus_branch:
-        description: "Ветка ядра Rezadinosaurus (sm8250: latte = AOSP/CLO, mocca = MIUI/HOS)"
+        description: "Ветка ядра Butterfly / Rezadinosaurus (sm8250: latte = AOSP/CLO, mocca = MIUI/HOS)"
         required: true
         type: choice
         default: "lineage-latte"
@@ -101,7 +101,7 @@ on:
         default: true
 
       susfs_enable:
-        description: "Включить SUSFS (не совместим с: next, xxksu, rsuntk, sukisu — работает ТОЛЬКО с bakasu)"
+        description: "Включить SUSFS (работает ТОЛЬКО с bakasu; НЕ поддерживается в Butterfly — там исп. NoMount)"
         required: true
         type: boolean
         default: true
@@ -137,7 +137,7 @@ on:
         default: false
 
       kpm_enable:
-        description: "Включить KPM (поддержка Kernel Patch Module)"
+        description: "Включить KPM (Kernel Patch Module; поддерживается в LineageOS и Butterfly, НЕ поддерживается в E404)"
         required: true
         type: boolean
         default: false

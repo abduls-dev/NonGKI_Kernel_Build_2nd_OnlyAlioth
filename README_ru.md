@@ -41,16 +41,40 @@
    - Ветки: `lineage-24.0`, `lineage-23.2`, `lineage-22.2`, `lineage-21`
    - Компилятор: AOSP Clang (`lineage-20.0`), `LD=ld.lld LLVM=1 LLVM_IAS=1`
    - Фикс-патч SUSFS: [`Patches/Patch/poco_f3_susfs_fixed.patch`](Patches/Patch/poco_f3_susfs_fixed.patch)
+   - Поддерживает: **Все патчи**, включая SUSFS, NoMount, KPM, Re:Kernel, BBG, Droidspaces, VPNHide, fgetpriority, RTL8812AU.
 2. **E404 (`sm8250`)** — [`kvsnr113/xiaomi_sm8250_kernel_e404`](https://github.com/kvsnr113/xiaomi_sm8250_kernel_e404)
    - Ветки: `main`, `main-bpf`, `a17`, `staging`, `personal`, `personal-test` (+ остальные ветки)
    - Компилятор: LLVM/Clang `22.1.3`, `LD=ld.lld LLVM=1 LLVM_IAS=1`
    - Фикс-патч SUSFS: [`Patches/Patch/poco_f3_e404_susfs_fixed.patch`](Patches/Patch/poco_f3_e404_susfs_fixed.patch)
-3. **Rezadinosaurus (`sm8250`)** — [`rezadinosaurus/android_kernel_qcom_sm8250`](https://github.com/rezadinosaurus/android_kernel_qcom_sm8250)
+   - Ограничения: ❌ **KPM не поддерживается** (структуры kallsyms/set_memory удалены автором ядра).
+3. **Butterfly Kernel (`sm8250`)** — [`rezadinosaurus/android_kernel_qcom_sm8250`](https://github.com/rezadinosaurus/android_kernel_qcom_sm8250)
+   - Автор: rezdino / Rezadinosaurus (проект Butterfly 🦋)
    - Ветки: `lineage-latte` (для AOSP/CLO прошивок) и `lineage-mocca` (для MIUI/HyperOS прошивок)
-   - Компилятор: AOSP Clang (`lineage-20.0`), `LD=ld.lld LLVM=1 LLVM_IAS=1`
+   - Компилятор: **GNU GCC** (`aarch64-linux-gnu-gcc`), ветки оптимизированы строго под GCC
    - Дефконфиг: `vendor/alioth_defconfig`
-   - Фикс-патч SUSFS: [`Patches/Patch/poco_f3_susfs_fixed.patch`](Patches/Patch/poco_f3_susfs_fixed.patch)
-   - Упаковка: AnyKernel3
+   - Особенности:
+     - ✅ **NoMount встроен в ядро** автором из коробки (`CONFIG_NOMOUNT=y`).
+     - ✅ **KPM полностью поддерживается** (`set_memory.h`, `CONFIG_MODULES=y`, `CONFIG_KALLSYMS_ALL=y`).
+     - ❌ **SUSFS не поддерживается** (патч конфликтует с кодом ядра; используйте встроенный **NoMount**).
+
+---
+
+### 📊 Матрица совместимости патчей для ядер Poco F3
+
+| Патч / Функция (Workflow Option) | LineageOS (`sm8250`) | E404 (`sm8250`) | Butterfly / Rezadinosaurus (`sm8250`) | Примечания |
+|---|:---:|:---:|:---:|---|
+| **KernelSU** (`kernelsu_fork`) | ✅ Все форки | ✅ Все форки | ✅ Все форки | BakaSU, Next, SukiSU-Nova, xxKSU, rsuntk |
+| **SUSFS (v2.4.0)** (`susfs_enable`) | ✅ Поддерживается | ✅ Поддерживается | ❌ **Не поддерживается** | В Butterfly конфликт патча; используйте **NoMount** |
+| **NoMount** (`nomount_enable`) | ✅ Поддерживается | ✅ Поддерживается | ✅ **Встроен в ядро** | В Butterfly Kernel `CONFIG_NOMOUNT` встроен автором |
+| **KPM (Kernel Patch Module)** (`kpm_enable`) | ✅ Поддерживается | ❌ **Не поддерживается** | ✅ **Поддерживается** | В E404 удалены структуры KPM; в Butterfly работает |
+| **Re:Kernel** (`rekernel_enable`) | ✅ Поддерживается | ✅ Поддерживается | ✅ Поддерживается | Требует cgroup v2 freezer (есть во всех 3 ядрах) |
+| **fgetpriority** (`fgetpriority_enable`) | ✅ Поддерживается | ✅ Поддерживается | ✅ Поддерживается | Скрытие вызова `getpriority` от приложений |
+| **VPNHide Next** (`vpnhide_enable`) | ✅ Поддерживается | ✅ Поддерживается | ✅ Поддерживается | Сокрытие VPN-интерфейса от приложений |
+| **Baseband Guard (BBG)** (`bbg_enable`, `bbg_boot`) | ✅ Поддерживается | ✅ Поддерживается | ✅ Поддерживается | Защита модема + запрет перезаписи `boot` |
+| **Droidspaces (LXC/Docker)** (`droidspaces_enable`) | ✅ Поддерживается | ✅ Поддерживается | ✅ Поддерживается | Пространства имён и cgroup для контейнеров |
+| **RTL8812AU USB Wi-Fi** (`rtl8812au_enable`) | ✅ Поддерживается | ✅ Поддерживается | ✅ Поддерживается | Встроен в ядро (built-in 88XXau / Monitor Mode) |
+| **Отключение LTO/CFI** (`disable_lto_cfi`) | ✅ Поддерживается | ✅ Поддерживается | ✅ Поддерживается | Отключает LTO_CLANG / LTO_GCC / CFI |
+| **Компилятор / Toolchain** | **AOSP Clang** (20.0) | **LLVM/Clang** (22.1.3) | **GNU GCC** (aarch64-linux-gnu) | Butterfly собирается строго через GNU GCC |
 
 ---
 
