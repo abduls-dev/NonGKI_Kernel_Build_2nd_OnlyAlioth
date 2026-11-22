@@ -139,8 +139,8 @@ runs:
                 fi
 
             elif [[ "${{ env.KERNELSU_AUTO_FORK }}" == "sukisu" ]]; then
-                KERNELSU_AUTHOR="SukiSU-Ultra"
-                KERNELSU_NAME="SukiSU-Ultra"
+                KERNELSU_AUTHOR="SukiSU-Nova"
+                KERNELSU_NAME="SukiSU-Nova"
                 KERNELSU_ORIGIN_BRANCH="main"
                 if [[ "${{ env.SUSFS_ENABLE }}" == "true" ]]; then
                     KERNELSU_BRANCH="builtin"
@@ -285,7 +285,7 @@ runs:
           }
 
           if [[ ( "${{ env.KERNELSU_SOURCE }}" == *SukiSU* || "${{ env.KERNELSU_AUTO_FORK }}" == "sukisu" ) && "${{ env.KPM_INLINE }}" == "true" ]]; then
-            echo "[+] Detected SukiSU-Ultra and enabled KPM Inline."
+            echo "[+] Detected SukiSU-Nova and enabled KPM Inline."
             ENABLE_KPM_CONFIGS
 
             if [ -f "include/linux/set_memory.h" ]; then

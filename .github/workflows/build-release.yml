@@ -306,7 +306,7 @@ jobs:
       KPM_ENABLE: "${{ format('{0}', inputs.kpm_enable == true) }}"
       KPM_INLINE: "false"
       KPM_KPATCH_NEXT: "false"
-      KPM_PATCH_SOURCE: "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU_patch/refs/heads/main/kpm/patch_linux"
+      KPM_PATCH_SOURCE: "https://raw.githubusercontent.com/SukiSU-Nova/SukiSU_patch/refs/heads/main/kpm/patch_linux"
 
       BASEBAND_GUARD_ENABLE: "${{ format('{0}', inputs.bbg_enable == true) }}"
       BASEBAND_GUARD_BOOT: "${{ format('{0}', inputs.bbg_boot == true) }}"
@@ -495,7 +495,7 @@ jobs:
       KPM_ENABLE: "${{ format('{0}', inputs.kpm_enable == true) }}"
       KPM_INLINE: "false"
       KPM_KPATCH_NEXT: "false"
-      KPM_PATCH_SOURCE: "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU_patch/refs/heads/main/kpm/patch_linux"
+      KPM_PATCH_SOURCE: "https://raw.githubusercontent.com/SukiSU-Nova/SukiSU_patch/refs/heads/main/kpm/patch_linux"
 
       BASEBAND_GUARD_ENABLE: "${{ format('{0}', inputs.bbg_enable == true) }}"
       BASEBAND_GUARD_BOOT: "${{ format('{0}', inputs.bbg_boot == true) }}"
@@ -687,7 +687,7 @@ jobs:
       KPM_ENABLE: "${{ format('{0}', inputs.kpm_enable == true) }}"
       KPM_INLINE: "false"
       KPM_KPATCH_NEXT: "false"
-      KPM_PATCH_SOURCE: "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU_patch/refs/heads/main/kpm/patch_linux"
+      KPM_PATCH_SOURCE: "https://raw.githubusercontent.com/SukiSU-Nova/SukiSU_patch/refs/heads/main/kpm/patch_linux"
 
       BASEBAND_GUARD_ENABLE: "${{ format('{0}', inputs.bbg_enable == true) }}"
       BASEBAND_GUARD_BOOT: "${{ format('{0}', inputs.bbg_boot == true) }}"
@@ -871,9 +871,9 @@ jobs:
               KSU_INFO="[KernelSU-rsuntk](https://github.com/rsuntk/KernelSU) Version: $VER"
               ;;
             sukisu)
-              git clone -b builtin https://github.com/SukiSU-Ultra/SukiSU-Ultra.git KernelSU-tmp
+              git clone -b builtin https://github.com/SukiSU-Nova/SukiSU-Nova.git KernelSU-tmp
               VER=$(cd KernelSU-tmp && expr $(/usr/bin/git rev-list --count HEAD) + 40000 - 2815)
-              KSU_INFO="[KernelSU-SukiSU-Ultra](https://github.com/SukiSU-Ultra/SukiSU-Ultra) Version: $VER"
+              KSU_INFO="[KernelSU-SukiSU-Nova](https://github.com/SukiSU-Nova/SukiSU-Nova) Version: $VER"
               ;;
             next)
               git clone -b legacy https://github.com/KernelSU-Next/KernelSU-Next.git KernelSU-tmp
