@@ -1,11 +1,17 @@
-<h2 align="center">Non-GKI Kernel Build</h2>
+<p align="center">
+  <img src="assets/logo.png" width="160" alt="Alioth-CI logo">
+</p>
+<h1 align="center">Alioth-CI</h1>
+<p align="center"><b>One device. One kernel. Nothing extra.</b></p>
+<p align="center">Kernel with KernelSU + SUSFS for POCO F3 / Redmi K40 (alioth), forked from <a href="https://github.com/JackA1ltman/NonGKI_Kernel_Build_2nd">JackA1ltman/NonGKI_Kernel_Build_2nd</a>.</p>
 
 <p align="center">
   English | <a href="README_ru.md">Русский</a> | <a href="README_cn.md">中文说明</a> | <a href="Supported_list.md">Supported List</a> | <a href="https://github.com/JackA1ltman/NonGKI_Kernel_Build_2nd/wiki">Wiki</a> | <a href="https://t.me/+F6v29fKeXrUyYjI1">Telegram Group</a>
 </p>
 <p align="center">
-  <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/JackA1ltman/NonGKI_Kernel_Build_2nd/build-release.yml?branch=mainline&style=for-the-badge"> <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/JackA1ltman/NonGKI_Kernel_Build_2nd/latest/total?style=for-the-badge">
- <img alt="GitHub License" src="https://img.shields.io/github/license/JackA1ltman/NonGKI_Kernel_Build_2nd?style=for-the-badge">
+  <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/Floorys/Alioth-CI/build-release.yml?branch=mainline&style=for-the-badge">
+  <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/Floorys/Alioth-CI/latest/total?style=for-the-badge">
+  <img alt="GitHub License" src="https://img.shields.io/github/license/Floorys/Alioth-CI?style=for-the-badge">
 </p>
 
 > [!NOTE]
